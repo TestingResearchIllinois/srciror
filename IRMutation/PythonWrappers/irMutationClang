@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+
+import os, sys, subprocess, shutil, time, copy, fnmatch
+from collections import defaultdict
+import copy
+import zlib
+
+CWD = os.path.dirname(os.path.abspath(__file__))
+from bashUtil import executeCommand
+from irUtil import getSummaryDir, run
+
+
+def collectMutations(bitcode_file, src_file, opt_command, dummy):   # Using a dummy variable holder for last parameter for consistency
+    hash_code = zlib.adler32(bitcode_file + "+" + src_file) & 0xffffffff
+    command = opt_command + " -getBinaryOperators " + bitcode_file
+    print("the current directory is: " + os.getcwd())
+    print("collecting binops mutants with the command: " + command)
+    out1, err1, my_time1 = executeCommand(command.split())
+
+    command = opt_command + " -getICRMutationLocs " + bitcode_file
+    print("the current directory is: " + os.getcwd())
+    print("collecting binops mutants with the command: " + command)
+    out2, err2, my_time2 = executeCommand(command.split())
+
+    mutantsDir = os.path.join(getSummaryDir(), "bc-mutants")
+    if not os.path.exists(mutantsDir):
+        os.makedirs(mutantsDir)
+    with open(os.path.join(mutantsDir, str(hash_code)), 'w') as log_file:
+        for line in err1.split("\n"):
+            if line:
+                log_file.write("binaryOp:" + line + "\n")
+        for line in err2.split("\n"):
+            if line:
+                log_file.write("const:" + line + "\n")
+
+
+def main():
+    return run('mutation', collectMutations)
+
+if __name__ == '__main__':
+    main()
