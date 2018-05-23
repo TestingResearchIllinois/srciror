@@ -3,4 +3,4 @@
 
 FILE * LlvmTrace;
 
-void llvmMutateTrace(int InstNum, uint64_t FileName);
+void SRCIRORLlvmCoverage(int InstNum, uint64_t FileName);

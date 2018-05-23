@@ -95,7 +95,7 @@ namespace {
     virtual bool runOnModule(Module &M) {
       // Insert the coverage helper function into the module
       Constant *PutFn;
-      PutFn = M.getOrInsertFunction("llvmMutateTrace", Type::getVoidTy(M.getContext()), Type::getInt32Ty(M.getContext()), Type::getInt64Ty(M.getContext()), NULL);
+      PutFn = M.getOrInsertFunction("SRCIRORLlvmCoverage", Type::getVoidTy(M.getContext()), Type::getInt32Ty(M.getContext()), Type::getInt64Ty(M.getContext()), NULL);
       hook = cast<Function>(PutFn);
       for (Module::iterator I = M.begin(), E = M.end(); I != E; ++I) {
         Function *F = &*I;

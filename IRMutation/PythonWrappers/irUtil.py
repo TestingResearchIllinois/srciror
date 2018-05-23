@@ -6,7 +6,7 @@ from bashUtil import executeCommand
 def getSummaryDir():
     # make the summary directory if does not exist
     # also makes the ir-coverage/ directory
-    summaryDir = os.path.join(os.getenv("HOME"), ".optimute")
+    summaryDir = os.path.join(os.getenv("HOME"), ".srciror")
     if not os.path.exists(summaryDir):
         os.makedirs(summaryDir)
     return summaryDir
