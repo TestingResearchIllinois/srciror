@@ -30,6 +30,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 WITH THE SOFTWARE.
 
-Parts of this code has been taken from the following two repositories:
+Parts of this code has been adapted from the following two repositories:
 https://github.com/eliben
 https://github.com/eschulte/clang-mutate
