@@ -1,5 +1,5 @@
 To build the mutator, one needs to have a source of LLVM and a build of it locally.
-The top of the Makefile assumes that these exist under ../tools/llvm and ../tools/llvm-build.
+The top of the Makefile assumes that these exist under ../llvm and ../llvm-build.
 We have included a script for convenience to download the LLVM sources for version 3.8.1 and
 build it.
 

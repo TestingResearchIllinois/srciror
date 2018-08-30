@@ -1,6 +1,6 @@
 CURR_DIR := $(shell pwd)
-LLVM_SRC_PATH := $(CURR_DIR)/../tools/llvm
-LLVM_BUILD_PATH := $(CURR_DIR)/../tools/llvm-build
+LLVM_SRC_PATH := $(CURR_DIR)/../llvm
+LLVM_BUILD_PATH := $(CURR_DIR)/../llvm-build
 LLVM_BIN_PATH := $(LLVM_BUILD_PATH)/Release+Asserts/bin
 
 CXX := g++

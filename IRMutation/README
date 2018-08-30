@@ -2,8 +2,8 @@ Instructions for compiling the LLVM passes:
 
 - copy the directory called Mutation (under LLVMPasses) as is into the
   LLVM source code tree under lib/Transforms/
-- add our new mutation pass into the make files under lib/Transforms.
+- add our new mutation pass (Mutation) into the make files under lib/Transforms.
 (either copy the provided Makefile and CMakeLists.txt into lib/Transforms
 if using LLVM 3.8.1 or adapt the existing ones if using another version)
 - go to your LLVM build directory and rebuild. You should have the mutation
-library generated under $build_directory/Release+Asserts/lib/LLVMMutate.so 
+library generated under $build_directory/Release+Asserts/lib/LLVMMutate.so

@@ -21,7 +21,7 @@ def run(task, taskFunction):
     llvm_bin_dir = os.environ["SRCIROR_LLVM_BIN"]
     clang = os.path.join(llvm_bin_dir, 'clang')
     opt = os.path.join(llvm_bin_dir, 'opt')
-    mutation_lib = os.environ["SRCIROR_LLVMMutate_LIB"] # path to llvm_build/Release+Asserts./lib/LLVMMutate.so
+    mutation_lib = os.environ["SRCIROR_LLVMMutate_LIB"] # path to llvm-build/Release+Asserts/lib/LLVMMutate.so
     if task == "coverage":
         our_lib = os.environ["SRCIROR_COVINSTRUMENTATION_LIB"] # path to IRMutation/InstrumentationLib/lib.o
     else:
