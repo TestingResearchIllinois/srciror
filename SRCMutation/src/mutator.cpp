@@ -31,6 +31,7 @@ using namespace clang::tooling;
 static llvm::cl::OptionCategory OptimuteMutatorCategory("Optimute Mutator");
 static llvm::cl::opt<std::string> CoverageInfo("coverage_info", llvm::cl::desc("Specify the lines covered by the test suite and should mutate"), llvm::cl::value_desc("string"));
 static std::set<int> CovSet;
+static bool MutateAll = false;
 
 class IfCondHandler : public MatchFinder::MatchCallback {
 
@@ -42,7 +43,7 @@ public:
   virtual void run(const MatchFinder::MatchResult &Result) {
     if (const IfStmt *CondStmt = Result.Nodes.getNodeAs<clang::IfStmt>(Binder)) {
       int lineNumber = Result.SourceManager->getSpellingLineNumber(CondStmt->getIfLoc());
-      if (CovSet.find(lineNumber) == CovSet.end()) {
+      if (!MutateAll && CovSet.find(lineNumber) == CovSet.end()) {  // Line is not in the set, and it's not MutateAll
         // printf("The match we found: %i is not in the set of covered lines\n", lineNumber);
         return;
       }
@@ -74,7 +75,7 @@ public:
   virtual void run(const MatchFinder::MatchResult &Result) {
     if (const WhileStmt *CondStmt = Result.Nodes.getNodeAs<clang::WhileStmt>(Binder)) {
       int lineNumber = Result.SourceManager->getSpellingLineNumber(CondStmt->getWhileLoc());
-      if (CovSet.find(lineNumber) == CovSet.end()) {
+      if (!MutateAll && CovSet.find(lineNumber) == CovSet.end()) {  // Line is not in the set, and it's not MutateAll
         // printf("The match we found: %i is not in the set of covered lines\n", lineNumber);
         return;
       }
@@ -107,7 +108,7 @@ public:
 
     if (const IntegerLiteral *IntLiteral = Result.Nodes.getNodeAs<clang::IntegerLiteral>(Binder)) {
       int lineNumber = Result.SourceManager->getSpellingLineNumber(IntLiteral->getLocation());
-      if (CovSet.find(lineNumber) == CovSet.end()) {
+      if (!MutateAll && CovSet.find(lineNumber) == CovSet.end()) {  // Line is not in the set, and it's not MutateAll
         // printf("The match we found: %i is not in the set of covered lines\n", lineNumber);
         return;
       }
@@ -177,7 +178,7 @@ public:
 
     if (const BinaryOperator *BinOp = Result.Nodes.getNodeAs<clang::BinaryOperator>(OpName)) {
       int lineNumber = Result.SourceManager->getSpellingLineNumber(BinOp->getOperatorLoc());
-      if (CovSet.find(lineNumber) == CovSet.end()) {
+      if (!MutateAll && CovSet.find(lineNumber) == CovSet.end()) {  // Line is not in the set, and it's not MutateAll
         // printf("The match we found: %i is not in the set of covered lines\n", lineNumber);
         return;
       }
@@ -270,6 +271,11 @@ std::set<int> parseCoverageLines(std::string ListOfLines) {
   while (ss.good()) {
     std::string substr;
     getline(ss, substr, ',');
+    // If the value is "all", then means want to mutate all, so MutateAll=true
+    if (!substr.compare("all")) {
+      MutateAll = true;
+      return result;
+    }
     result.insert(std::stoi(substr));
   }
 

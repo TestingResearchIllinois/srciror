@@ -15,8 +15,8 @@ def mutate(compiler, ext, mutator, args, compiler_include_flags, src_indices):
         cov_info = getCoverageInfo(src_file)
 
         if not cov_info:
-            print("no coverage info for the file: " + src_file + " skipping mutation")
-            return
+            print("no coverage info for the file: " + src_file + ", so assume wants to mutate all")
+            cov_info = "all"
         command = mutator + " " + src_file + " -coverage_info=" +  cov_info + " -- " + " ".join(args) + ' -I'  + compiler_include_flags.strip()
         print("THE ACTUAL COMMAND IS: " + command)
         out, err, my_time = executeCommand(command.split(), True)
