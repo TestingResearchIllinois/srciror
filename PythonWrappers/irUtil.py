@@ -88,7 +88,7 @@ def run(task, taskFunction):
     compiling_args = list(args)
     compiling_args[src_index] = bitcode_file
     command = [clang] + compiling_args + [our_lib]
-    print("we are generating the output from the .ll with the command" + " ".join(command))
+    print("we are generating the output from the .ll with the command " + " ".join(command))
     out, err, _ = executeCommand(command, True)
     print(str(out))
     print(str(err))

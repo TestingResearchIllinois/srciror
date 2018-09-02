@@ -8,6 +8,7 @@ from irUtil import getSummaryDir, run
 
 
 def performOptimization(command, out_file):
+    print("executing the opt command: " + command)
     out, err, my_time = executeCommand(command.split())
     if err:
         # remove the generated file
