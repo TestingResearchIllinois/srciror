@@ -23,7 +23,7 @@ def run(task, taskFunction):
     opt = os.path.join(llvm_bin_dir, 'opt')
     mutation_lib = os.environ["SRCIROR_LLVMMutate_LIB"] # path to llvm-build/Release+Asserts/lib/LLVMMutate.so
     if task == "coverage":
-        our_lib = os.environ["SRCIROR_COVINSTRUMENTATION_LIB"] # path to IRMutation/InstrumentationLib/lib.o
+        our_lib = os.environ["SRCIROR_COVINSTRUMENTATION_LIB"] # path to IRMutation/InstrumentationLib/SRCIRORCoverageLib.o
     else:
         our_lib = ""
     coverageDir = os.path.join(getSummaryDir(), "ir-coverage")  # guarantees directory is made
