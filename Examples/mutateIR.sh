@@ -4,8 +4,8 @@ CURR_DIR=$( cd $( dirname $0 ) && pwd )
 
 # Set up paths to where compiled tools are here
 export SRCIROR_COVINSTRUMENTATION_LIB=$CURR_DIR/../IRMutation/InstrumentationLib/SRCIRORCoverageLib.o
-export SRCIROR_LLVMMutate_LIB=$CURR_DIR/../tools/llvm-build/Release+Asserts/lib/LLVMMutate.so
-export SRCIROR_LLVM_BIN=$CURR_DIR/../tools/llvm-build/Release+Asserts/bin/
+export SRCIROR_LLVMMutate_LIB=$CURR_DIR/../llvm-build/Release+Asserts/lib/LLVMMutate.so
+export SRCIROR_LLVM_BIN=$CURR_DIR/../llvm-build/Release+Asserts/bin/
 
 # generate coverage
 rm -f /tmp/llvm_mutate_trace # remove any existing coverage
