@@ -29,5 +29,5 @@ BUILDING:
       export SRCIROR_COVINSTRUMENTATION_LIB=${PATH_TO_SRCIROR_DIR}/InstrumentationLib/SRCIRORCoverageLib.o;
     ```
   Either set environment variables `PATH_TO_LLVM_BUILD` and `PATH_TO_SRCIROR_DIR`,
-  or replace them with the corresponding values in the statements below.
+  or replace them with the corresponding values in the statements above.
 
